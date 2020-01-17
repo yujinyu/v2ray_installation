@@ -1,0 +1,49 @@
+{
+  "log": {
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log",
+    "loglevel": "warning"
+  },
+  "inbounds": [{
+    "port": 4443,
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "9f881eef-752a-e194-34ad-73e988e598ee",
+          "level": 1,
+          "alterId": 1024
+        }
+      ]
+    },
+    "streamSettings": {
+       "security": "tls",
+       "tlsSettings": {
+          "serverName": "wnlo.tk",
+          "certificates": [
+              {
+                 "certificateFile": "/etc/v2ray/v2ray.crt",
+                 "keyFile": "/etc/v2ray/v2ray.key"
+               }
+          ]
+       }
+     }
+  }],
+  "outbounds": [{
+    "protocol": "freedom",
+    "settings": {}
+  },{
+    "protocol": "blackhole",
+    "settings": {},
+    "tag": "blocked"
+  }],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["geoip:private"],
+        "outboundTag": "blocked"
+      }
+    ]
+  }
+}
