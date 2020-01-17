@@ -6,4 +6,4 @@ if __name__ == "__main__":
     download_and_install_v2ray(installation_dir)
     install_and_create_crt(config_dir, "wnlo.tk")
     config_v2ray(installation_dir, config_dir)
-    restart_v2ray
+    restart_v2ray()
