@@ -6,7 +6,6 @@
   },
   "inbounds": [{
     "port": 8443,
-    "listen":"127.0.0.1",
     "protocol": "vmess",
     "settings": {
       "clients": [
@@ -27,14 +26,7 @@
                  "keyFile": "/etc/v2ray/v2ray.key"
                }
           ]
-       },
-      "wsSettings": {
-          "connectionReuse": true,
-          "headers": {
-            "Host": "wnlo.tk"
-          },
-          "path": "/v2ray/"
-        }
+       }
      }
   }],
   "outbounds": [{

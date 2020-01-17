@@ -59,17 +59,18 @@ def config_v2ray(installation_dir, config_dir):
     fp.close()
 
 
-def install_and_create_crt(config_dir, domain_name):
-    if not os.path.exists(os.path.join(config_dir, "v2ray")):
-        os.system("mkdir -p {0}".format(os.path.join(config_dir, "v2ray")))
+def install_crt():
     os.system("curl https://get.acme.sh | sh")
 
+
+def create_crt(config_dir, domain_name):
+    if not os.path.exists(os.path.join(config_dir, "v2ray")):
+        os.system("mkdir -p {0}".format(os.path.join(config_dir, "v2ray")))
     os.system("export CF_Key=\"aa930e7b3927e7183f2428cc8da2e7e8d0938\" "
               "&& export CF_Email=\"yu_jinyu@yeah.net\" "
               "&& acme.sh --issue --dns dns_cf -d {0} "
               "&& acme.sh --install-cert -d {0} --key-file {1}/v2ray.key --fullchain-file {1}/v2ray.crt "
               "&& acme.sh --upgrade --auto-upgrade".format(domain_name, os.path.join(config_dir, "v2ray")))
-
 
 def restart_v2ray():
     os.system("systemctl enable v2ray.service && systemctl restart v2ray.service")
