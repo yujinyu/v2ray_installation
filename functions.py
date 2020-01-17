@@ -27,7 +27,9 @@ def download_and_install_v2ray(installation_dir):
             break
     if not os.path.exists(os.path.join(work_dir, version_name)):
         os.system("mkdir -p {0}".format(os.path.join(work_dir, version_name)))
-    os.system("cd {0} && wget {1} && mkdir {2} && mv {3} {2} "
+    else:
+        os.system("rm -rf {0}/*".format(os.path.join(work_dir, version_name)))
+    os.system("cd {0} && wget {1} && mv {3} {2} "
               "&& cd {2} && unzip {3} && rm -f {3} *.json *.sig "
               "&& rm -rf doc system*".format(work_dir, browser_download_url, version_name, release_filename))
     if not os.path.exists(os.path.join(installation_dir, "v2ray")):
